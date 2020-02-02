@@ -14,13 +14,11 @@ export const rejectErrors = res => {
   if (status >= 200 && status < 300) {
     return res;
   }
-  /*eslint-disable*/
-  // Error response example
-  // {"error":{"statusCode":404,"name":"Error","message":"There is no method to handle GET /productss"}}
-  /* eslint-enable */
+
   return Promise.reject({
     statusCode: status || 600,
-    message: res.message ? res.message : res.problem,
+    message: res.problem,
+    reason: res.data ? res.data : 'error',
     error: !ok,
   });
 };
@@ -109,6 +107,7 @@ export const createRequestSaga = ({
         if (response.ok) {
           return response.data;
         }
+
         return rejectErrors(response);
       };
 
