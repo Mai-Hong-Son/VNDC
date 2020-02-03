@@ -9,12 +9,11 @@ export const login = ({userName, passWord}, ...etc) => ({
   ],
 });
 
-export const register = ({name, username, email, phone}, ...etc) => ({
+export const register = ({name, email, phone}, ...etc) => ({
   type: 'auth/register',
   args: [
     {
       name,
-      username,
       email,
       phone,
     },

@@ -22,12 +22,12 @@ export default {
       },
     ),
 
-  register: ({name, username, email, phone}) =>
+  register: ({name, email, phone}) =>
     API.post(
       '/users',
       {
         name,
-        username,
+        username: email,
         email,
         customValues: {
           referrer: 'gb.huynhanhtan@gmail.com',

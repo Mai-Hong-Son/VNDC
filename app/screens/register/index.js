@@ -49,7 +49,7 @@ class Register extends React.PureComponent {
       return;
     }
 
-    this.props.register({name, username, email, phone}, (err, data) => {
+    this.props.register({name, email, phone}, (err, data) => {
       // console.warn(err, data);
       if (err) {
         let errorMessage = '';
@@ -80,14 +80,6 @@ class Register extends React.PureComponent {
               placeholder={'Enter your fullname'}
               onChangeText={name => this.setState({name})}
               value={this.state.name}
-            />
-            <View style={{height: 22}} />
-            <TextInputCustom
-              iconUrl={require('../../assets/images/icons/icon_user.png')}
-              title={'Username'}
-              placeholder={'Enter your username'}
-              onChangeText={username => this.setState({username})}
-              value={this.state.username}
             />
             <View style={{height: 22}} />
             <TextInputCustom
