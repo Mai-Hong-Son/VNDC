@@ -9,7 +9,7 @@ const platform = {
   orangeColor: '#FF9F1A',
   textColor: '#D2FEFF',
   iconColor: '#1DBA99',
-  placeholderColor: '#5E8184',
+  placeholderColor: '#3A505D',
   errorColor: '#FF001F',
 };
 

@@ -5,8 +5,13 @@ import {connect} from 'react-redux';
 import actions from 'app/store/actions';
 import platform from 'app/utils/platform';
 import BoxRadius from 'app/components/box_radius';
-import TextInputCustom from 'app/components/text_input';
 import ButtonRadius from 'app/components/button_radius';
+import {
+  showAlertMessage,
+  validateEmail,
+  validatePhoneNumber,
+} from 'app/utils/funcUtil';
+import TextInputCustom from 'app/components/text_input';
 
 @connect(
   null,
@@ -29,8 +34,37 @@ class Register extends React.PureComponent {
   onSignUp = () => {
     const {name, username, email, phone} = this.state;
 
+    if (!username || !email || !phone) {
+      showAlertMessage('Lỗi', 'Chưa nhập đủ thông tin!');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      showAlertMessage('Lỗi', 'Email chưa đúng định dạng!');
+      return;
+    }
+
+    if (!validatePhoneNumber(phone)) {
+      showAlertMessage('Lỗi', 'Số điện thoại chưa đúng định dạng!');
+      return;
+    }
+
     this.props.register({name, username, email, phone}, (err, data) => {
-      console.warn(err, data);
+      // console.warn(err, data);
+      if (err) {
+        let errorMessage = '';
+
+        err.reason.properties.forEach(element => {
+          errorMessage =
+            errorMessage + (err.reason.propertyErrors[element][0] + '\n');
+        });
+
+        showAlertMessage('Lỗi', errorMessage);
+      } else if (data) {
+        showAlertMessage('Thành công', 'Đăng ký thành công', () =>
+          this.props.navigation.goBack(),
+        );
+      }
     });
   };
 

@@ -30,6 +30,7 @@ class SignIn extends React.PureComponent {
 
     if (!userName || !passWord) {
       showAlertMessage('Lỗi', 'Chưa nhập đủ thông tin!');
+      return;
     }
 
     this.props.login({userName, passWord}, (err, data) => {
