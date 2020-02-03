@@ -1,25 +1,28 @@
-import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
 
 import Home from 'app/screens/home';
-import AppDrawer from 'app/screens/drawer';
+import platform from 'app/utils/platform';
 
-const MainStack = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: ({navigation}) => ({
-      title: 'Home',
-    }),
+const MainNavigation = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: ({navigation}) => ({
+        title: '',
+      }),
+    },
   },
-});
-
-const MainNavigation = createDrawerNavigator({
-  MainStack: {
-    screen: MainStack,
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: platform.backgroundColor,
+        shadowColor: 'transparent',
+      },
+      headerBackTitleVisible: false,
+      headerTintColor: platform.textColor,
+    },
   },
-  AppDrawer: {
-    screen: AppDrawer,
-  },
-});
+);
 
 export default MainNavigation;
