@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import AppText from 'app/components/app_text';
+import platform from 'app/utils/platform';
 
 class Home extends React.PureComponent {
   static navigationOptions = props => {
@@ -27,7 +28,7 @@ class Home extends React.PureComponent {
 
   render() {
     return (
-      <View styles={styles.container}>
+      <View style={styles.container}>
         <AppText>{'Home'}</AppText>
       </View>
     );
@@ -39,5 +40,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: platform.backgroundColor,
+    paddingHorizontal: 16,
   },
 });
